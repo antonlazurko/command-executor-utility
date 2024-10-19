@@ -9,14 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const prompt_service_1 = require("./core/prompt/prompt.service");
-class App {
-    run() {
+exports.CommandExecutor = void 0;
+class CommandExecutor {
+    constructor(logger) {
+        this.logger = logger;
+    }
+    execute() {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield (new prompt_service_1.PromptService().input('Number', 'number'));
-            console.log(result);
+            const input = yield this.prompt();
+            const command = this.build(input);
+            const stream = this.spawn(command);
+            this.processStream(stream, this.logger);
         });
     }
 }
-const app = new App();
-app.run();
+exports.CommandExecutor = CommandExecutor;

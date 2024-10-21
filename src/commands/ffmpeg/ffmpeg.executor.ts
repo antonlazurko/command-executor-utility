@@ -38,4 +38,5 @@ export class FfmpegExecutor extends CommandExecutor<IFfmpegInput>{
     protected processStream(stream: ChildProcessWithoutNullStreams, logger: IStreamLogger): void {
         const handler = new StreamHandler(logger)
         handler.processOutput(stream)
+    }
 }

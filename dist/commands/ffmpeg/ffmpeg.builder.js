@@ -24,6 +24,7 @@ class FfmpegBuilder {
             args.push(value);
         });
         args.push(outputPath);
+        return args;
     }
 }
 exports.FfmpegBuilder = FfmpegBuilder;
